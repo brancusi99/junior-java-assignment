@@ -19,6 +19,8 @@ public class InsurancePolicy {
     @NotBlank @Column(nullable = false)
     private LocalDate endDate; // nullable == open-ended
 
+    private boolean logged;
+
     public InsurancePolicy() {}
     public InsurancePolicy(Car car, String provider, LocalDate startDate, LocalDate endDate) {
         this.car = car; this.provider = provider; this.startDate = startDate; this.endDate = endDate;
@@ -33,4 +35,10 @@ public class InsurancePolicy {
     public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
     public LocalDate getEndDate() { return endDate; }
     public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
+    public boolean isLogged() {
+        return logged;
+    }
+    public void setLogged(boolean logged) {
+        this.logged = logged;
+    }
 }
