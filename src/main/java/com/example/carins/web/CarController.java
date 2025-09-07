@@ -42,7 +42,7 @@ public class CarController {
         }
             LocalDate d;
             try{
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US).withResolverStyle(ResolverStyle.STRICT);
+                DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE.withResolverStyle(ResolverStyle.STRICT);
                 d = LocalDate.parse(date, formatter);
                 System.out.println("date: " + date);
 
