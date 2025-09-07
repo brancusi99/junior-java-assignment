@@ -1,10 +1,14 @@
 /Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/CarInsuranceApplication.java
 /Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/model/Car.java
+/Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/model/InsClaim.java
 /Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/model/InsurancePolicy.java
 /Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/model/Owner.java
 /Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/repo/CarRepository.java
+/Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/repo/InsClaimRepository.java
 /Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/repo/InsurancePolicyRepository.java
 /Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/repo/OwnerRepository.java
 /Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/service/CarService.java
 /Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/web/CarController.java
 /Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/web/dto/CarDto.java
+/Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/web/dto/ClaimRequest.java
+/Users/Delia/Downloads/juniorjava/junior-java-test 1 1/src/main/java/com/example/carins/web/dto/ClaimResponse.java
