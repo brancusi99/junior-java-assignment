@@ -2,8 +2,10 @@ package com.example.carins.web;
 
 import com.example.carins.model.Car;
 import com.example.carins.model.InsClaim;
+import com.example.carins.model.InsurancePolicy;
 import com.example.carins.service.CarService;
 import com.example.carins.service.ClaimService;
+import com.example.carins.service.InsurancePolicyService;
 import com.example.carins.web.dto.CarDto;
 import com.example.carins.web.dto.ClaimRequest;
 import com.example.carins.web.dto.ClaimResponse;
@@ -26,10 +28,12 @@ public class CarController {
 
     private final CarService service;
     private final ClaimService claimService;
+    private final InsurancePolicyService insurancePolicyService;
 
-    public CarController(CarService service, ClaimService claimService) {
+    public CarController(CarService service, ClaimService claimService, InsurancePolicyService insurancePolicyService) {
         this.service = service;
         this.claimService = claimService;
+        this.insurancePolicyService = insurancePolicyService;
     }
 
     @GetMapping("/cars")
@@ -113,6 +117,15 @@ public class CarController {
                 o != null ? o.getId() : null,
                 o != null ? o.getName() : null,
                 o != null ? o.getEmail() : null);
+    }
+
+    @PostMapping("/cars/policy/create")
+    public ResponseEntity<?> createPolicy(@RequestBody InsurancePolicy policy) {
+        if(policy.getEndDate() == null) {
+            return ResponseEntity.badRequest().body(new ErrorResponse("end date cannot be null"));
+        }
+
+        return ResponseEntity.ok(insurancePolicyService.createOrUpdatePolicy(policy));
     }
 
     public record InsuranceValidityResponse(Long carId, String date, boolean valid) {}
