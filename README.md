@@ -41,6 +41,9 @@ Implemented features:
 - List all cars with their owners.
 - Check if a policy is active for a car on a given date.
 
+To be implemented:
+-Creating/Updating a new insurance policy
+
 
 ## 4) Database Tables (Current & Proposed)
 
@@ -72,7 +75,7 @@ Please treat these as production-quality changes: add validation, return proper 
 
 Ensure all insurance policies have an **end date** and that this is enforced at both:
 1. **API/JPA validation level** and
-2. **Database level**
+2. **Database level** (done)
 
 Acceptance criteria:
 - Creating/updating a policy without `endDate` fails with 4xx and a helpful message.
