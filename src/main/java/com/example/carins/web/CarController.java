@@ -20,7 +20,6 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 
 @RestController
 @RequestMapping("/api")
@@ -44,7 +43,7 @@ public class CarController {
     public record ErrorResponse(String error){}
 
     @GetMapping("/cars/{carId}/insurance-valid")
-    public ResponseEntity<?> isInsuranceValid(@PathVariable Long carId, @RequestParam String date) {
+    public ResponseEntity<?> isInsuranceValid(@PathVariable Long carId, @RequestParam String date) throws DateTimeParseException{
         if(carId == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("carId cant be null"));
         }
@@ -85,7 +84,7 @@ public class CarController {
 
         LocalDate claimDate;
             try{
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US).withResolverStyle(ResolverStyle.STRICT);
+                DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE.withResolverStyle(ResolverStyle.STRICT);
                 claimDate = LocalDate.parse(request.claimDate(), formatter);
                 //System.out.println("date: " + claimDate);
 
