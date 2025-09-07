@@ -3,6 +3,7 @@ package com.example.carins.web;
 import com.example.carins.model.Car;
 import com.example.carins.model.InsClaim;
 import com.example.carins.service.CarService;
+import com.example.carins.service.ClaimService;
 import com.example.carins.web.dto.CarDto;
 import com.example.carins.web.dto.ClaimRequest;
 import com.example.carins.web.dto.ClaimResponse;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -23,9 +25,11 @@ import java.util.Locale;
 public class CarController {
 
     private final CarService service;
+    private final ClaimService claimService;
 
-    public CarController(CarService service) {
+    public CarController(CarService service, ClaimService claimService) {
         this.service = service;
+        this.claimService = claimService;
     }
 
     @GetMapping("/cars")
@@ -54,6 +58,20 @@ public class CarController {
         boolean valid = service.isInsuranceValid(carId, d);  
         return ResponseEntity.ok(new InsuranceValidityResponse(carId, d.toString(), valid));
     }
+
+    @GetMapping("/cars/{carId}/history")
+    public List<ClaimResponse> getClaims(@PathVariable Long carId){
+        return claimService.listClaims().stream()
+                .filter(claim -> claim.getCar().getId().equals(carId))
+                .sorted(Comparator.comparing(InsClaim::getClaimDate))
+                .map(insClaim ->
+        new ClaimResponse(insClaim.getId(),
+                insClaim.getCar().getId(),
+                insClaim.getClaimDate().toString(),
+                insClaim.getDescription(),
+                insClaim.getAmount())
+    )
+                .toList();}
 
     @PostMapping("/cars/{carId}/claims")
     public ResponseEntity<?> newClaim(@PathVariable Long carId, @RequestBody ClaimRequest request){
